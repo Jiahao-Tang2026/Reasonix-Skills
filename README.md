@@ -56,7 +56,26 @@ watch-tex.bat 论文.tex
 
 ---
 
-## 在新会话中使用 Skill
+## 在其他智能体中使用
+
+> ⚠️ `.md` skill 文件是专为 **Reasonix Code** 格式编写的（含 `name:` / `description:` / `runAs:` 等 frontmatter），直接给其他智能体用可能不兼容。
+
+但 `watch-tex.bat` 是**纯 Windows 批处理脚本**，与智能体无关——任何工具都可以调用它：
+
+```bash
+# 在任何终端中直接使用
+watch-tex.bat my_paper.tex
+```
+
+如果你用的其他 AI 工具支持自定义指令 / 提示词，可以把 skill 里的**工作流逻辑**提取出来作为提示词使用。例如在 Cursor / Claude Code 中：
+
+> "你是一个 LaTeX 编辑助手。需要编辑 .tex 文件时，用 latexmk -pvc 启动监听，改完后自动编译，让我刷新 PDF 看效果。"
+
+具体适配方式取决于你用的工具。
+
+---
+
+## 在新会话中使用 Skill（仅限 Reasonix Code）
 
 启动 Reasonix Code 后，Skill 会自动加载。直接说：
 
@@ -75,5 +94,5 @@ add_mcp_server(name: "gh", from_catalog: "github",
 
 add_mcp_server(name: "ppt", transport: "stdio",
     command: "py",
-    args: ["D:\Reasonix\MCP\ppt_mcp_server\ppt_mcp_server.py"])
+    args: ["D:\\Reasonix\\MCP\\ppt_mcp_server\\ppt_mcp_server.py"])
 ```
